@@ -1,7 +1,18 @@
 import pytest
 import datetime
-from main import write_transaction
+from main import write_transaction, get_balance
 from pathlib import Path
+
+
+def test_get_balance():
+    """Test calculating the total balance.
+    Checking that functon get_balance calculate the total balance correctly.
+    """
+
+    data_file = Path("test_database.txt")
+
+    res = get_balance(data_file)
+    assert res == 10.0
 
 
 def test_write_transaction():
@@ -14,7 +25,7 @@ def test_write_transaction():
     date = datetime.date(2025, 11, 24)
     amount = 100.25
 
-    # Create empty data base file
+    # Create empty database file
     with data_file.open(mode="w"):
         pass
 
